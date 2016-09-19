@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBoxDescription = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxDy = new System.Windows.Forms.TextBox();
+            this.textBoxDx = new System.Windows.Forms.TextBox();
             this.labelSepPoints = new System.Windows.Forms.Label();
             this.textBoxPoints = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,10 +48,6 @@
             this.pictureBoxSchema = new System.Windows.Forms.PictureBox();
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
             this.buttonDraw = new System.Windows.Forms.Button();
-            this.textBoxDx = new System.Windows.Forms.TextBox();
-            this.textBoxDy = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBoxDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSchema)).BeginInit();
             this.groupBoxActions.SuspendLayout();
@@ -79,6 +79,40 @@
             this.groupBoxDescription.TabIndex = 0;
             this.groupBoxDescription.TabStop = false;
             this.groupBoxDescription.Text = "Описание объекта";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 502);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(20, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Dy";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 475);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Dx";
+            // 
+            // textBoxDy
+            // 
+            this.textBoxDy.Location = new System.Drawing.Point(44, 499);
+            this.textBoxDy.Name = "textBoxDy";
+            this.textBoxDy.Size = new System.Drawing.Size(199, 20);
+            this.textBoxDy.TabIndex = 14;
+            this.textBoxDy.Text = "0";
+            // 
+            // textBoxDx
+            // 
+            this.textBoxDx.Location = new System.Drawing.Point(44, 472);
+            this.textBoxDx.Name = "textBoxDx";
+            this.textBoxDx.Size = new System.Drawing.Size(199, 20);
+            this.textBoxDx.TabIndex = 13;
+            this.textBoxDx.Text = "0";
             // 
             // labelSepPoints
             // 
@@ -214,38 +248,6 @@
             this.buttonDraw.Text = "Построить";
             this.buttonDraw.UseVisualStyleBackColor = true;
             this.buttonDraw.Click += new System.EventHandler(this.buttonDraw_Click);
-            // 
-            // textBoxDx
-            // 
-            this.textBoxDx.Location = new System.Drawing.Point(44, 472);
-            this.textBoxDx.Name = "textBoxDx";
-            this.textBoxDx.Size = new System.Drawing.Size(199, 20);
-            this.textBoxDx.TabIndex = 13;
-            // 
-            // textBoxDy
-            // 
-            this.textBoxDy.Location = new System.Drawing.Point(44, 499);
-            this.textBoxDy.Name = "textBoxDy";
-            this.textBoxDy.Size = new System.Drawing.Size(199, 20);
-            this.textBoxDy.TabIndex = 14;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 475);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Dx";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 502);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(20, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Dy";
             // 
             // FormMain
             // 

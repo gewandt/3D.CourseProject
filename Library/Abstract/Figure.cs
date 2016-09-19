@@ -18,7 +18,5 @@ namespace Library.Abstract
             Height = height;
             Radius = radius;
         }
-
-        public virtual void CalculateCoords(Point3D start) { }
     }
 }

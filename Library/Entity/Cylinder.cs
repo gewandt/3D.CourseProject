@@ -23,28 +23,63 @@ namespace Library.Entity
             coordTop = new Point3D[_points];
         }
 
-        public override void CalculateCoords(Point3D startCoord)
+        public void CalculateCoords(Point3D startCoord, float targetHeight)
         {
+            targetHeight = GetByBindingDrawDimension(targetHeight);
             var angle = 360 / _points;
-            int angleSum = 0;
-            for (var i = 0; i < _points; i++)
-            {
-                var alpha = (angleSum * Math.PI) / 180;
-                coordBottom[i].X = (float)(startCoord.X + (Radius * Math.Cos(alpha) + Dx));
-                coordBottom[i].Y = startCoord.Y;
-                coordBottom[i].Z = (float)(startCoord.Z + (Radius * Math.Sin(alpha) + Dz));
-                angleSum += angle;
-            }
+            CalcCoords(startCoord, coordBottom, angle, targetHeight, false);
+            CalcCoords(startCoord, coordTop, angle, targetHeight, true);
+        }
 
-            angleSum = 0;
+        private void CalcCoords(Point3D startCoord, Point3D[] points, int angle, float targetHeight, bool isTop)
+        {
+            var angleSum = 0;
             for (var i = 0; i < _points; i++)
             {
                 var alpha = (angleSum * Math.PI) / 180;
-                coordTop[i].X = (float)(startCoord.X + (Radius * Math.Cos(alpha) + Dx));
-                coordTop[i].Y = startCoord.Y + Height;
-                coordTop[i].Z = (float)(startCoord.Z + (Radius * Math.Sin(alpha) + Dz));
+                points[i].X = (float)(startCoord.X + (Radius * Math.Cos(alpha) + Dx));
+                points[i].Y = GetSumByLocationPoints(startCoord.Y, targetHeight, isTop);
+                points[i].Z = (float)(startCoord.Z + (Radius * Math.Sin(alpha) + Dz));
                 angleSum += angle;
             }
+        }
+
+        private float GetSumByLocationPoints(float startY, float targetHeight, bool isTop)
+        {
+            if (isTop)
+            {
+                var operation = GetOperationByBinding();
+                return operation(startY, Height) - targetHeight;
+            }
+            return startY - targetHeight;
+        }
+
+        private float GetByBindingDrawDimension(float targetHeight)
+        {
+            if (_binding.Equals("Снизу"))
+            {
+                return 0;
+            }
+            return targetHeight;            
+        }
+
+        private Func<float, float, float> GetOperationByBinding()
+        {
+            if (_binding.Equals("Снизу"))
+            {
+                return OperationPlus;
+            }
+            return OperationMinus;
+        }
+
+        private float OperationPlus(float source1, float source2)
+        {
+            return source1 + source2;
+        }
+
+        private float OperationMinus(float source1, float source2)
+        {
+            return source1 - source2;
         }
     }
 }

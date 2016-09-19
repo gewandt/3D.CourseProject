@@ -20,6 +20,7 @@ namespace UI
         public FormMain()
         {
             InitializeComponent();
+            comboBoxBinding.SelectedIndex = 1;
         }
 
         private void buttonDraw_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace UI
         {
             _ctrl.DrawCoordSystem(pictureBoxMain, e);
             _ctrl.DrawFigures(e);
+            _ctrl.DrawRibs(e);
         }
     }
 }
