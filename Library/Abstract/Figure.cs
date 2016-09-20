@@ -18,5 +18,24 @@ namespace Library.Abstract
             Height = height;
             Radius = radius;
         }
+
+        public void Move(ref Point3D point, float dx, float dy, float dz)
+        {
+            float[] Target = { point.X, point.Y, point.Z, 1 };
+
+            float[,] Source = { {1, 0, 0, 0},
+                            {0, 1, 0, 0},
+                            {0, 0, 1, 0},
+                            {dx, dy, dz, 1} };
+
+            float[] Result = { (Target[0] * Source[0, 0]) + (Target[1] * Source[1, 0]) + (Target[2] * Source[2, 0]) + (Target[3] * Source[3, 0]),
+                            (Target[0] * Source[0, 1]) + (Target[1] * Source[1, 1]) + (Target[2] * Source[2, 1]) - (Target[3] * Source[3, 1]),
+                            (Target[0] * Source[0, 2]) + (Target[1] * Source[1, 2]) + (Target[2] * Source[2, 2]) + (Target[3] * Source[3, 2]),
+                            (Target[0] * Source[0, 3]) + (Target[1] * Source[1, 3]) + (Target[2] * Source[2, 3]) + (Target[3] * Source[3, 3]) };
+
+            point.X = Result[0];
+            point.Y = Result[1];
+            point.Z = Result[2];
+        }
     }
 }

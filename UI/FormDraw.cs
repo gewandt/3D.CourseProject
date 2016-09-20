@@ -13,11 +13,25 @@ namespace UI
 {
     public partial class FormDraw : Form
     {
+        private readonly Graphics _gr;
         private ParamCtrl _ctrl;
         public FormDraw(ParamCtrl ctrl)
         {
             _ctrl = ctrl;
             InitializeComponent();
+            _gr = Graphics.FromHwnd(pictureBoxMain.Handle);
+        }
+
+        public void ClearDrawArea()
+        {
+            _ctrl.ClearArea(_gr);
+        }
+
+        public void RedrawArea(Graphics g)
+        {
+            _ctrl.DrawCoordSystem(pictureBoxMain, g);
+            _ctrl.DrawFigures(g);
+            _ctrl.DrawRibs(g);
         }
 
         private void FormDraw_FormClosed(object sender, FormClosedEventArgs e)
@@ -27,9 +41,7 @@ namespace UI
 
         private void pictureBoxMain_Paint(object sender, PaintEventArgs e)
         {
-            _ctrl.DrawCoordSystem(pictureBoxMain, e);
-            _ctrl.DrawFigures(e);
-            _ctrl.DrawRibs(e);
+            RedrawArea(e.Graphics);
         }
     }
 }

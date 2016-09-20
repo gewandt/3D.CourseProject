@@ -40,12 +40,12 @@ namespace Library
         /// </summary>
         /// <param name="pb">picture box for coord</param>
         /// <param name="e">paint event</param>
-        public void DrawCoordSystem(PictureBox pb, PaintEventArgs e)
+        public void DrawCoordSystem(PictureBox pb, Graphics g)
         {
             var height = pb.Height;
             var width = pb.Width;
             OriginCoord = new Entity.Point3D(width / 2, height / 2, 0);
-            var g = e.Graphics;
+            //var g = e.Graphics;
             Pen pen = new Pen(Color.Black);
             g.DrawLine(pen, 0, OriginCoord.Y, width, OriginCoord.Y);
             g.DrawLine(pen, OriginCoord.X, 0, OriginCoord.X, height);
@@ -94,11 +94,11 @@ namespace Library
         /// Draw figures on graphic
         /// </summary>
         /// <param name="e">Event to paint</param>
-        public void DrawFigures(PaintEventArgs e)
+        public void DrawFigures(Graphics g)
         {
             prism?.CalculateCoords(OriginCoord);
             cylinder?.CalculateCoords(OriginCoord, prism.Height);
-            var g = e.Graphics;
+            //var g = e.Graphics;
             Pen pen = new Pen(Color.Green, 5);
             DrawPointsByCoords(g, pen, prism.coordBottom);
             DrawPointsByCoords(g, pen, prism.coordTop);
@@ -111,9 +111,9 @@ namespace Library
         /// Draw ribs for figures
         /// </summary>
         /// <param name="e">Event to paint</param>
-        public void DrawRibs(PaintEventArgs e)
+        public void DrawRibs(Graphics g)
         {
-            var g = e.Graphics;
+            //var g = e.Graphics;
             Pen pen = new Pen(Color.Green, 1);
             DrawRibsAtBase(g, pen, prism.coordTop);
             DrawRibsAtBase(g, pen, prism.coordBottom);
@@ -124,6 +124,22 @@ namespace Library
             DrawRibsFromTopToBottom(g, pen, cylinder.coordTop, cylinder.coordBottom);
             pen.Color = Color.Green;
             DrawRibsFromTopToBottom(g, pen, prism.coordTop, prism.coordBottom);
+        }
+
+        public void MoveFigures(int dx, int dy, int dz)
+        {
+            dx *= delta;
+            dy *= delta;
+            dz *= delta;
+            for (int i = 0; i < cylinder.coordBottom.Count(); i++)
+            {
+                cylinder.Move(ref cylinder.coordBottom[i], dx, dy, dz);
+            }
+        }
+
+        public void ClearArea(Graphics g)
+        {
+            g.Clear(Color.White);
         }
 
         private void DrawRibsAtBase(Graphics g, Pen pen, Point3D[] array)

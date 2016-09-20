@@ -34,7 +34,7 @@
             // 
             // pictureBoxMain
             // 
-            this.pictureBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxMain.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBoxMain.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxMain.Name = "pictureBoxMain";
             this.pictureBoxMain.Size = new System.Drawing.Size(584, 565);

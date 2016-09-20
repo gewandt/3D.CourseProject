@@ -21,6 +21,7 @@ namespace UI
         {
             InitializeComponent();
             comboBoxBinding.SelectedIndex = 1;
+            tabControlActions.Visible = false;
         }
 
         private void buttonDraw_Click(object sender, EventArgs e)
@@ -29,6 +30,7 @@ namespace UI
             {
                 _ctrl = Validation.Validate(textBoxHeight1.Text, textBoxRadius1.Text, textBoxHeight2.Text, textBoxRadius2.Text, comboBoxBinding.Text, textBoxPoints.Text, textBoxDx.Text, textBoxDy.Text);
                 CreateFormForDraw();
+                tabControlActions.Visible = true;
             }
             catch (FormatException)
             {
@@ -45,6 +47,13 @@ namespace UI
                 _formDraw.StartPosition = FormStartPosition.CenterScreen;
                 _formDraw.WindowState = FormWindowState.Maximized;
             }
+        }
+
+        private void buttonIncX_Click(object sender, EventArgs e)
+        {
+            _formDraw.ClearDrawArea();
+            _ctrl.MoveFigures((int)numericUpDownDx.Value, (int)numericUpDownDy.Value, (int)numericUpDownDz.Value);
+            _formDraw.RedrawArea();
         }
     }
 }
