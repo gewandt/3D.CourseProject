@@ -143,12 +143,30 @@ namespace Library
             MoveFigure(prism, dx, dy, dz);
         }
 
+        public void ScaleFigures(float sx, float sy, float sz)
+        {
+            ScaleFigure(cylinder, sx, sy, sz);
+            ScaleFigure(prism, sx, sy, sz);
+        }
+
         private void MoveFigure(Figure figure, int dx, int dy, int dz)
         {
             for (int i = 0; i < figure.coordBottom.Count(); i++)
             {
                 figure.Move(ref figure.coordBottom[i], dx, dy, dz);
                 figure.Move(ref figure.coordTop[i], dx, dy, dz);
+            }
+        }
+
+        private void ScaleFigure(Figure figure, float sx, float sy, float sz)
+        {
+            float toZeroX = OriginCoord.X * (1 - sx);
+            float toZeroY = OriginCoord.Y * (1 - sy);
+            float toZeroZ = OriginCoord.Z * (1 - sz);
+            for (int i = 0; i < figure.coordBottom.Count(); i++)
+            {
+                figure.Scale(ref figure.coordBottom[i], sx, sy, sz, toZeroX, toZeroY, toZeroZ);
+                figure.Scale(ref figure.coordTop[i], sx, sy, sz, toZeroX, toZeroY, toZeroZ);
             }
         }
 

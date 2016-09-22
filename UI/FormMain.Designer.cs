@@ -59,6 +59,12 @@
             this.numericUpDownDy = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownDx = new System.Windows.Forms.NumericUpDown();
             this.tabPageScale = new System.Windows.Forms.TabPage();
+            this.textBoxCoeffScaleX = new System.Windows.Forms.TextBox();
+            this.textBoxCoeffScaleY = new System.Windows.Forms.TextBox();
+            this.textBoxCoeffScaleZ = new System.Windows.Forms.TextBox();
+            this.buttonScaleOX = new System.Windows.Forms.Button();
+            this.buttonScaleOy = new System.Windows.Forms.Button();
+            this.buttonScaleZ = new System.Windows.Forms.Button();
             this.groupBoxDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSchema)).BeginInit();
             this.groupBoxActions.SuspendLayout();
@@ -67,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDx)).BeginInit();
+            this.tabPageScale.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxDescription
@@ -366,6 +373,12 @@
             // 
             // tabPageScale
             // 
+            this.tabPageScale.Controls.Add(this.buttonScaleZ);
+            this.tabPageScale.Controls.Add(this.buttonScaleOy);
+            this.tabPageScale.Controls.Add(this.buttonScaleOX);
+            this.tabPageScale.Controls.Add(this.textBoxCoeffScaleZ);
+            this.tabPageScale.Controls.Add(this.textBoxCoeffScaleY);
+            this.tabPageScale.Controls.Add(this.textBoxCoeffScaleX);
             this.tabPageScale.Location = new System.Drawing.Point(4, 22);
             this.tabPageScale.Name = "tabPageScale";
             this.tabPageScale.Padding = new System.Windows.Forms.Padding(3);
@@ -373,6 +386,58 @@
             this.tabPageScale.TabIndex = 1;
             this.tabPageScale.Text = "Масштабирование";
             this.tabPageScale.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCoeffScaleX
+            // 
+            this.textBoxCoeffScaleX.Location = new System.Drawing.Point(7, 14);
+            this.textBoxCoeffScaleX.Name = "textBoxCoeffScaleX";
+            this.textBoxCoeffScaleX.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCoeffScaleX.TabIndex = 0;
+            this.textBoxCoeffScaleX.Text = "1.5";
+            // 
+            // textBoxCoeffScaleY
+            // 
+            this.textBoxCoeffScaleY.Location = new System.Drawing.Point(7, 38);
+            this.textBoxCoeffScaleY.Name = "textBoxCoeffScaleY";
+            this.textBoxCoeffScaleY.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCoeffScaleY.TabIndex = 1;
+            this.textBoxCoeffScaleY.Text = "1";
+            // 
+            // textBoxCoeffScaleZ
+            // 
+            this.textBoxCoeffScaleZ.Location = new System.Drawing.Point(7, 64);
+            this.textBoxCoeffScaleZ.Name = "textBoxCoeffScaleZ";
+            this.textBoxCoeffScaleZ.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCoeffScaleZ.TabIndex = 2;
+            this.textBoxCoeffScaleZ.Text = "1";
+            // 
+            // buttonScaleOX
+            // 
+            this.buttonScaleOX.Location = new System.Drawing.Point(113, 12);
+            this.buttonScaleOX.Name = "buttonScaleOX";
+            this.buttonScaleOX.Size = new System.Drawing.Size(75, 23);
+            this.buttonScaleOX.TabIndex = 3;
+            this.buttonScaleOX.Text = "Ось X";
+            this.buttonScaleOX.UseVisualStyleBackColor = true;
+            this.buttonScaleOX.Click += new System.EventHandler(this.buttonScaleOX_Click);
+            // 
+            // buttonScaleOy
+            // 
+            this.buttonScaleOy.Location = new System.Drawing.Point(114, 38);
+            this.buttonScaleOy.Name = "buttonScaleOy";
+            this.buttonScaleOy.Size = new System.Drawing.Size(75, 23);
+            this.buttonScaleOy.TabIndex = 4;
+            this.buttonScaleOy.Text = "Ось Y";
+            this.buttonScaleOy.UseVisualStyleBackColor = true;
+            // 
+            // buttonScaleZ
+            // 
+            this.buttonScaleZ.Location = new System.Drawing.Point(114, 64);
+            this.buttonScaleZ.Name = "buttonScaleZ";
+            this.buttonScaleZ.Size = new System.Drawing.Size(75, 23);
+            this.buttonScaleZ.TabIndex = 5;
+            this.buttonScaleZ.Text = "Ось Z";
+            this.buttonScaleZ.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -396,6 +461,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDz)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDx)).EndInit();
+            this.tabPageScale.ResumeLayout(false);
+            this.tabPageScale.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -433,6 +500,12 @@
         private System.Windows.Forms.NumericUpDown numericUpDownDx;
         private System.Windows.Forms.Button buttonInc;
         private System.Windows.Forms.Button buttonDec;
+        private System.Windows.Forms.Button buttonScaleZ;
+        private System.Windows.Forms.Button buttonScaleOy;
+        private System.Windows.Forms.Button buttonScaleOX;
+        private System.Windows.Forms.TextBox textBoxCoeffScaleZ;
+        private System.Windows.Forms.TextBox textBoxCoeffScaleY;
+        private System.Windows.Forms.TextBox textBoxCoeffScaleX;
     }
 }
 

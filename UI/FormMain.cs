@@ -67,5 +67,11 @@ namespace UI
             _ctrl.MoveFigures(-(int)numericUpDownDx.Value, -(int)numericUpDownDy.Value, -(int)numericUpDownDz.Value);
             RedrawAreaWithRefreshing(false);
         }
+
+        private void buttonScaleOX_Click(object sender, EventArgs e)
+        {
+            _ctrl.ScaleFigures(float.Parse(textBoxCoeffScaleX.Text), float.Parse(textBoxCoeffScaleY.Text), float.Parse(textBoxCoeffScaleZ.Text));
+            RedrawAreaWithRefreshing(false);
+        }
     }
 }
