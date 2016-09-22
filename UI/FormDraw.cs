@@ -13,35 +13,32 @@ namespace UI
 {
     public partial class FormDraw : Form
     {
-        private readonly Graphics _gr;
         private ParamCtrl _ctrl;
+        private Graphics gr;
         public FormDraw(ParamCtrl ctrl)
         {
             _ctrl = ctrl;
             InitializeComponent();
-            _gr = Graphics.FromHwnd(pictureBoxMain.Handle);
         }
 
-        public void ClearDrawArea()
+        public void RedrawArea(bool isFirst = true)
         {
-            _ctrl.ClearArea(_gr);
+            InitialGraphics();
+            if (isFirst)
+                _ctrl.OverrideOriginCoordinates(pictureBoxMain);
+            _ctrl.DrawCoordSystem(gr);
+            _ctrl.DrawFigures(gr);
+            _ctrl.DrawRibs(gr);
         }
 
-        public void RedrawArea(Graphics g)
+        private void InitialGraphics()
         {
-            _ctrl.DrawCoordSystem(pictureBoxMain, g);
-            _ctrl.DrawFigures(g);
-            _ctrl.DrawRibs(g);
+            gr = Graphics.FromHwnd(pictureBoxMain.Handle);
         }
 
         private void FormDraw_FormClosed(object sender, FormClosedEventArgs e)
         {
             Dispose();
-        }
-
-        private void pictureBoxMain_Paint(object sender, PaintEventArgs e)
-        {
-            RedrawArea(e.Graphics);
         }
     }
 }

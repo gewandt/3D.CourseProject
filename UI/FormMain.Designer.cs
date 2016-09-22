@@ -30,6 +30,7 @@
         {
             this.groupBoxDescription = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.buttonDraw = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxDy = new System.Windows.Forms.TextBox();
             this.textBoxDx = new System.Windows.Forms.TextBox();
@@ -47,30 +48,25 @@
             this.textBoxHeight1 = new System.Windows.Forms.TextBox();
             this.pictureBoxSchema = new System.Windows.Forms.PictureBox();
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
-            this.buttonDraw = new System.Windows.Forms.Button();
             this.tabControlActions = new System.Windows.Forms.TabControl();
             this.tabPageMoove = new System.Windows.Forms.TabPage();
-            this.tabPageScale = new System.Windows.Forms.TabPage();
-            this.numericUpDownDx = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownDy = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownDz = new System.Windows.Forms.NumericUpDown();
-            this.labelDx = new System.Windows.Forms.Label();
-            this.labelDy = new System.Windows.Forms.Label();
+            this.buttonInc = new System.Windows.Forms.Button();
+            this.buttonDec = new System.Windows.Forms.Button();
             this.labelDz = new System.Windows.Forms.Label();
-            this.buttonIncX = new System.Windows.Forms.Button();
-            this.buttonDecX = new System.Windows.Forms.Button();
-            this.buttonDecY = new System.Windows.Forms.Button();
-            this.buttonIncY = new System.Windows.Forms.Button();
-            this.buttonDecZ = new System.Windows.Forms.Button();
-            this.buttonIncZ = new System.Windows.Forms.Button();
+            this.labelDy = new System.Windows.Forms.Label();
+            this.labelDx = new System.Windows.Forms.Label();
+            this.numericUpDownDz = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownDy = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownDx = new System.Windows.Forms.NumericUpDown();
+            this.tabPageScale = new System.Windows.Forms.TabPage();
             this.groupBoxDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSchema)).BeginInit();
             this.groupBoxActions.SuspendLayout();
             this.tabControlActions.SuspendLayout();
             this.tabPageMoove.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDz)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDx)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxDescription
@@ -109,6 +105,17 @@
             this.label7.Size = new System.Drawing.Size(20, 13);
             this.label7.TabIndex = 16;
             this.label7.Text = "Dy";
+            // 
+            // buttonDraw
+            // 
+            this.buttonDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDraw.Location = new System.Drawing.Point(6, 696);
+            this.buttonDraw.Name = "buttonDraw";
+            this.buttonDraw.Size = new System.Drawing.Size(237, 23);
+            this.buttonDraw.TabIndex = 0;
+            this.buttonDraw.Text = "Построить";
+            this.buttonDraw.UseVisualStyleBackColor = true;
+            this.buttonDraw.Click += new System.EventHandler(this.buttonDraw_Click);
             // 
             // label6
             // 
@@ -260,17 +267,6 @@
             this.groupBoxActions.TabStop = false;
             this.groupBoxActions.Text = "Действия";
             // 
-            // buttonDraw
-            // 
-            this.buttonDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDraw.Location = new System.Drawing.Point(6, 696);
-            this.buttonDraw.Name = "buttonDraw";
-            this.buttonDraw.Size = new System.Drawing.Size(237, 23);
-            this.buttonDraw.TabIndex = 0;
-            this.buttonDraw.Text = "Построить";
-            this.buttonDraw.UseVisualStyleBackColor = true;
-            this.buttonDraw.Click += new System.EventHandler(this.buttonDraw_Click);
-            // 
             // tabControlActions
             // 
             this.tabControlActions.Controls.Add(this.tabPageMoove);
@@ -284,12 +280,8 @@
             // 
             // tabPageMoove
             // 
-            this.tabPageMoove.Controls.Add(this.buttonIncZ);
-            this.tabPageMoove.Controls.Add(this.buttonDecZ);
-            this.tabPageMoove.Controls.Add(this.buttonIncY);
-            this.tabPageMoove.Controls.Add(this.buttonDecY);
-            this.tabPageMoove.Controls.Add(this.buttonDecX);
-            this.tabPageMoove.Controls.Add(this.buttonIncX);
+            this.tabPageMoove.Controls.Add(this.buttonInc);
+            this.tabPageMoove.Controls.Add(this.buttonDec);
             this.tabPageMoove.Controls.Add(this.labelDz);
             this.tabPageMoove.Controls.Add(this.labelDy);
             this.tabPageMoove.Controls.Add(this.labelDx);
@@ -304,54 +296,25 @@
             this.tabPageMoove.Text = "Смещение";
             this.tabPageMoove.UseVisualStyleBackColor = true;
             // 
-            // tabPageScale
+            // buttonInc
             // 
-            this.tabPageScale.Location = new System.Drawing.Point(4, 22);
-            this.tabPageScale.Name = "tabPageScale";
-            this.tabPageScale.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageScale.Size = new System.Drawing.Size(745, 155);
-            this.tabPageScale.TabIndex = 1;
-            this.tabPageScale.Text = "Масштабирование";
-            this.tabPageScale.UseVisualStyleBackColor = true;
+            this.buttonInc.Location = new System.Drawing.Point(188, 62);
+            this.buttonInc.Name = "buttonInc";
+            this.buttonInc.Size = new System.Drawing.Size(75, 23);
+            this.buttonInc.TabIndex = 9;
+            this.buttonInc.Text = "-->";
+            this.buttonInc.UseVisualStyleBackColor = true;
+            this.buttonInc.Click += new System.EventHandler(this.buttonInc_Click);
             // 
-            // numericUpDownDx
+            // buttonDec
             // 
-            this.numericUpDownDx.Location = new System.Drawing.Point(49, 23);
-            this.numericUpDownDx.Name = "numericUpDownDx";
-            this.numericUpDownDx.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDownDx.TabIndex = 0;
-            // 
-            // numericUpDownDy
-            // 
-            this.numericUpDownDy.Location = new System.Drawing.Point(49, 65);
-            this.numericUpDownDy.Name = "numericUpDownDy";
-            this.numericUpDownDy.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDownDy.TabIndex = 1;
-            // 
-            // numericUpDownDz
-            // 
-            this.numericUpDownDz.Location = new System.Drawing.Point(49, 108);
-            this.numericUpDownDz.Name = "numericUpDownDz";
-            this.numericUpDownDz.Size = new System.Drawing.Size(42, 20);
-            this.numericUpDownDz.TabIndex = 2;
-            // 
-            // labelDx
-            // 
-            this.labelDx.AutoSize = true;
-            this.labelDx.Location = new System.Drawing.Point(24, 25);
-            this.labelDx.Name = "labelDx";
-            this.labelDx.Size = new System.Drawing.Size(22, 13);
-            this.labelDx.TabIndex = 3;
-            this.labelDx.Text = "DX";
-            // 
-            // labelDy
-            // 
-            this.labelDy.AutoSize = true;
-            this.labelDy.Location = new System.Drawing.Point(24, 67);
-            this.labelDy.Name = "labelDy";
-            this.labelDy.Size = new System.Drawing.Size(22, 13);
-            this.labelDy.TabIndex = 4;
-            this.labelDy.Text = "DY";
+            this.buttonDec.Location = new System.Drawing.Point(106, 62);
+            this.buttonDec.Name = "buttonDec";
+            this.buttonDec.Size = new System.Drawing.Size(75, 23);
+            this.buttonDec.TabIndex = 8;
+            this.buttonDec.Text = "<--";
+            this.buttonDec.UseVisualStyleBackColor = true;
+            this.buttonDec.Click += new System.EventHandler(this.buttonDec_Click);
             // 
             // labelDz
             // 
@@ -362,60 +325,54 @@
             this.labelDz.TabIndex = 5;
             this.labelDz.Text = "DZ";
             // 
-            // buttonIncX
+            // labelDy
             // 
-            this.buttonIncX.Location = new System.Drawing.Point(187, 22);
-            this.buttonIncX.Name = "buttonIncX";
-            this.buttonIncX.Size = new System.Drawing.Size(75, 23);
-            this.buttonIncX.TabIndex = 6;
-            this.buttonIncX.Text = "-->";
-            this.buttonIncX.UseVisualStyleBackColor = true;
-            this.buttonIncX.Click += new System.EventHandler(this.buttonIncX_Click);
+            this.labelDy.AutoSize = true;
+            this.labelDy.Location = new System.Drawing.Point(24, 67);
+            this.labelDy.Name = "labelDy";
+            this.labelDy.Size = new System.Drawing.Size(22, 13);
+            this.labelDy.TabIndex = 4;
+            this.labelDy.Text = "DY";
             // 
-            // buttonDecX
+            // labelDx
             // 
-            this.buttonDecX.Location = new System.Drawing.Point(106, 22);
-            this.buttonDecX.Name = "buttonDecX";
-            this.buttonDecX.Size = new System.Drawing.Size(75, 23);
-            this.buttonDecX.TabIndex = 7;
-            this.buttonDecX.Text = "<--";
-            this.buttonDecX.UseVisualStyleBackColor = true;
+            this.labelDx.AutoSize = true;
+            this.labelDx.Location = new System.Drawing.Point(24, 25);
+            this.labelDx.Name = "labelDx";
+            this.labelDx.Size = new System.Drawing.Size(22, 13);
+            this.labelDx.TabIndex = 3;
+            this.labelDx.Text = "DX";
             // 
-            // buttonDecY
+            // numericUpDownDz
             // 
-            this.buttonDecY.Location = new System.Drawing.Point(106, 62);
-            this.buttonDecY.Name = "buttonDecY";
-            this.buttonDecY.Size = new System.Drawing.Size(75, 23);
-            this.buttonDecY.TabIndex = 8;
-            this.buttonDecY.Text = "<--";
-            this.buttonDecY.UseVisualStyleBackColor = true;
+            this.numericUpDownDz.Location = new System.Drawing.Point(49, 108);
+            this.numericUpDownDz.Name = "numericUpDownDz";
+            this.numericUpDownDz.Size = new System.Drawing.Size(42, 20);
+            this.numericUpDownDz.TabIndex = 2;
             // 
-            // buttonIncY
+            // numericUpDownDy
             // 
-            this.buttonIncY.Location = new System.Drawing.Point(188, 62);
-            this.buttonIncY.Name = "buttonIncY";
-            this.buttonIncY.Size = new System.Drawing.Size(75, 23);
-            this.buttonIncY.TabIndex = 9;
-            this.buttonIncY.Text = "-->";
-            this.buttonIncY.UseVisualStyleBackColor = true;
+            this.numericUpDownDy.Location = new System.Drawing.Point(49, 65);
+            this.numericUpDownDy.Name = "numericUpDownDy";
+            this.numericUpDownDy.Size = new System.Drawing.Size(42, 20);
+            this.numericUpDownDy.TabIndex = 1;
             // 
-            // buttonDecZ
+            // numericUpDownDx
             // 
-            this.buttonDecZ.Location = new System.Drawing.Point(106, 108);
-            this.buttonDecZ.Name = "buttonDecZ";
-            this.buttonDecZ.Size = new System.Drawing.Size(75, 23);
-            this.buttonDecZ.TabIndex = 10;
-            this.buttonDecZ.Text = "<--";
-            this.buttonDecZ.UseVisualStyleBackColor = true;
+            this.numericUpDownDx.Location = new System.Drawing.Point(49, 23);
+            this.numericUpDownDx.Name = "numericUpDownDx";
+            this.numericUpDownDx.Size = new System.Drawing.Size(42, 20);
+            this.numericUpDownDx.TabIndex = 0;
             // 
-            // buttonIncZ
+            // tabPageScale
             // 
-            this.buttonIncZ.Location = new System.Drawing.Point(188, 108);
-            this.buttonIncZ.Name = "buttonIncZ";
-            this.buttonIncZ.Size = new System.Drawing.Size(75, 23);
-            this.buttonIncZ.TabIndex = 11;
-            this.buttonIncZ.Text = "-->";
-            this.buttonIncZ.UseVisualStyleBackColor = true;
+            this.tabPageScale.Location = new System.Drawing.Point(4, 22);
+            this.tabPageScale.Name = "tabPageScale";
+            this.tabPageScale.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageScale.Size = new System.Drawing.Size(745, 155);
+            this.tabPageScale.TabIndex = 1;
+            this.tabPageScale.Text = "Масштабирование";
+            this.tabPageScale.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -436,9 +393,9 @@
             this.tabControlActions.ResumeLayout(false);
             this.tabPageMoove.ResumeLayout(false);
             this.tabPageMoove.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDz)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -474,12 +431,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDownDz;
         private System.Windows.Forms.NumericUpDown numericUpDownDy;
         private System.Windows.Forms.NumericUpDown numericUpDownDx;
-        private System.Windows.Forms.Button buttonIncZ;
-        private System.Windows.Forms.Button buttonDecZ;
-        private System.Windows.Forms.Button buttonIncY;
-        private System.Windows.Forms.Button buttonDecY;
-        private System.Windows.Forms.Button buttonDecX;
-        private System.Windows.Forms.Button buttonIncX;
+        private System.Windows.Forms.Button buttonInc;
+        private System.Windows.Forms.Button buttonDec;
     }
 }
 

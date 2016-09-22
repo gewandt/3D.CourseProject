@@ -1,4 +1,5 @@
-﻿using Library.Entity;
+﻿using Library.Abstract;
+using Library.Entity;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -33,22 +34,33 @@ namespace Library
             prism = new Prism(h2 * delta, r2 * delta);
             Accuracy = points;
             Binding = binding;
+            OriginCoord = new Entity.Point3D() { X = 0, Y = 0, Z = 0 };
+        }
+
+        /// <summary>
+        /// Override standart starting coordinates and calculate coords for figures
+        /// </summary>
+        /// <param name="pb">Picturebox for painting</param>
+        public void OverrideOriginCoordinates(PictureBox pb)
+        {
+            var height = pb.Height;
+            var width = pb.Width;
+            OriginCoord = new Entity.Point3D(width / 2, height / 2, 0);
+            prism?.CalculateCoords(OriginCoord);
+            cylinder?.CalculateCoords(OriginCoord, prism.Height);
         }
 
         /// <summary>
         /// Draw lines like coord system x and y
         /// </summary>
         /// <param name="pb">picture box for coord</param>
-        /// <param name="e">paint event</param>
-        public void DrawCoordSystem(PictureBox pb, Graphics g)
+        /// <param name="g">Graphics</param>
+        public void DrawCoordSystem(Graphics g)
         {
-            var height = pb.Height;
-            var width = pb.Width;
-            OriginCoord = new Entity.Point3D(width / 2, height / 2, 0);
-            //var g = e.Graphics;
             Pen pen = new Pen(Color.Black);
-            g.DrawLine(pen, 0, OriginCoord.Y, width, OriginCoord.Y);
-            g.DrawLine(pen, OriginCoord.X, 0, OriginCoord.X, height);
+            g.DrawLine(pen, 0, OriginCoord.Y, OriginCoord.X * 2, OriginCoord.Y);
+            g.DrawLine(pen, OriginCoord.X, 0, OriginCoord.X, OriginCoord.Y * 2);
+            var height = OriginCoord.Y * 2;
 
             #region Draw cordinates (numbers and notes)
 
@@ -87,18 +99,15 @@ namespace Library
             #endregion
 
             g.DrawString("X", new Font("Arial", 12), System.Drawing.Brushes.Black, new Point(delta, (int)OriginCoord.Y - delta));
-            g.DrawString("Y", new Font("Arial", 12), System.Drawing.Brushes.Black, new Point((int)OriginCoord.X - delta, height - delta));
+            g.DrawString("Y", new Font("Arial", 12), System.Drawing.Brushes.Black, new Point((int)OriginCoord.X - delta, (int)height - delta));
         }
 
         /// <summary>
         /// Draw figures on graphic
         /// </summary>
-        /// <param name="e">Event to paint</param>
+        /// <param name="g">Graphics to paint</param>
         public void DrawFigures(Graphics g)
         {
-            prism?.CalculateCoords(OriginCoord);
-            cylinder?.CalculateCoords(OriginCoord, prism.Height);
-            //var g = e.Graphics;
             Pen pen = new Pen(Color.Green, 5);
             DrawPointsByCoords(g, pen, prism.coordBottom);
             DrawPointsByCoords(g, pen, prism.coordTop);
@@ -110,10 +119,9 @@ namespace Library
         /// <summary>
         /// Draw ribs for figures
         /// </summary>
-        /// <param name="e">Event to paint</param>
+        /// <param name="g">Graphics to paint</param>
         public void DrawRibs(Graphics g)
         {
-            //var g = e.Graphics;
             Pen pen = new Pen(Color.Green, 1);
             DrawRibsAtBase(g, pen, prism.coordTop);
             DrawRibsAtBase(g, pen, prism.coordBottom);
@@ -131,15 +139,17 @@ namespace Library
             dx *= delta;
             dy *= delta;
             dz *= delta;
-            for (int i = 0; i < cylinder.coordBottom.Count(); i++)
-            {
-                cylinder.Move(ref cylinder.coordBottom[i], dx, dy, dz);
-            }
+            MoveFigure(cylinder, dx, dy, dz);
+            MoveFigure(prism, dx, dy, dz);
         }
 
-        public void ClearArea(Graphics g)
+        private void MoveFigure(Figure figure, int dx, int dy, int dz)
         {
-            g.Clear(Color.White);
+            for (int i = 0; i < figure.coordBottom.Count(); i++)
+            {
+                figure.Move(ref figure.coordBottom[i], dx, dy, dz);
+                figure.Move(ref figure.coordTop[i], dx, dy, dz);
+            }
         }
 
         private void DrawRibsAtBase(Graphics g, Pen pen, Point3D[] array)

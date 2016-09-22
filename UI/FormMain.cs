@@ -42,18 +42,30 @@ namespace UI
         {
             if (_formDraw == null || _formDraw.IsDisposed)
             {
-                _formDraw = new FormDraw(_ctrl) {MdiParent = this};
+                _formDraw = new FormDraw(_ctrl) {MdiParent = this };
                 _formDraw.Show();
                 _formDraw.StartPosition = FormStartPosition.CenterScreen;
                 _formDraw.WindowState = FormWindowState.Maximized;
+                RedrawAreaWithRefreshing();
             }
         }
 
-        private void buttonIncX_Click(object sender, EventArgs e)
+        private void RedrawAreaWithRefreshing(bool isFirst = true)
         {
-            _formDraw.ClearDrawArea();
+            _formDraw.Refresh();
+            _formDraw.RedrawArea(isFirst);
+        }
+
+        private void buttonInc_Click(object sender, EventArgs e)
+        {
             _ctrl.MoveFigures((int)numericUpDownDx.Value, (int)numericUpDownDy.Value, (int)numericUpDownDz.Value);
-            _formDraw.RedrawArea();
+            RedrawAreaWithRefreshing(false);
+        }
+
+        private void buttonDec_Click(object sender, EventArgs e)
+        {
+            _ctrl.MoveFigures(-(int)numericUpDownDx.Value, -(int)numericUpDownDy.Value, -(int)numericUpDownDz.Value);
+            RedrawAreaWithRefreshing(false);
         }
     }
 }
