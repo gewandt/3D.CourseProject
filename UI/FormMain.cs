@@ -73,5 +73,23 @@ namespace UI
             _ctrl.ScaleFigures(float.Parse(textBoxCoeffScaleX.Text), float.Parse(textBoxCoeffScaleY.Text), float.Parse(textBoxCoeffScaleZ.Text));
             RedrawAreaWithRefreshing(false);
         }
+
+        private void buttonRotateX_Click(object sender, EventArgs e)
+        {
+            _ctrl.RotateFigures(float.Parse(numericUpDownRotate.Value.ToString()), 0, 0);
+            RedrawAreaWithRefreshing(false);
+        }
+
+        private void buttonRotateY_Click(object sender, EventArgs e)
+        {
+            _ctrl.RotateFigures(0, float.Parse(numericUpDownRotate.Value.ToString()), 0);
+            RedrawAreaWithRefreshing(false);
+        }
+
+        private void buttonRotateZ_Click(object sender, EventArgs e)
+        {
+            _ctrl.RotateFigures(0, 0, float.Parse(numericUpDownRotate.Value.ToString()));
+            RedrawAreaWithRefreshing(false);
+        }
     }
 }

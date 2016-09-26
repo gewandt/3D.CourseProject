@@ -149,6 +149,48 @@ namespace Library
             ScaleFigure(prism, sx, sy, sz);
         }
 
+        public void RotateFigures(float ax, float ay, float az)
+        {
+            RotateFigure(cylinder, ax, ay, az);
+            RotateFigure(prism, ax, ay, az);
+        }
+
+        private void RotateFigure(Figure figure, float ax = 0, float ay = 0, float az = 0)
+        {
+            double zeroAx = 0, zeroAy = 0, zeroAz = 0;
+            GetZeroRotation(ax, ay, az, out zeroAx, out zeroAy, out zeroAz);
+            for (int i = 0; i < figure.coordBottom.Count(); i++)
+            {
+                figure.Rotate(ref figure.coordBottom[i], ax, ay, az, zeroAx, zeroAy, zeroAz);
+                figure.Rotate(ref figure.coordTop[i], ax, ay, az, zeroAx, zeroAy, zeroAz);
+            }
+        }
+
+        private void GetZeroRotation(float ax, float ay, float az, out double zeroX, out double zeroY, out double zeroZ)
+        {
+            zeroX = 0;
+            zeroY = 0;
+            zeroZ = 0;
+            if(ax != 0)
+            {
+                zeroX = 0;
+                zeroY = OriginCoord.Y * (1 - Math.Cos(-(ax * Math.PI) / 180)) + OriginCoord.Z * Math.Sin(-(ax * Math.PI) / 180);
+                zeroZ = OriginCoord.Z * (1 - Math.Cos(-(ax * Math.PI) / 180)) - OriginCoord.Y * Math.Sin(-(ax * Math.PI) / 180);
+            }
+            if (ay != 0)
+            {
+                zeroX = OriginCoord.X * (1 - Math.Cos(-(ay * Math.PI) / 180)) + OriginCoord.Z * Math.Sin(-(ay * Math.PI) / 180);
+                zeroY = 0;
+                zeroZ = OriginCoord.Z * (1 - Math.Cos(-(ay * Math.PI) / 180)) - OriginCoord.X * Math.Sin(-(ay * Math.PI) / 180);
+            }
+            if (az != 0)
+            {
+                zeroX = OriginCoord.X * (1 - Math.Cos(-(az * Math.PI) / 180)) + OriginCoord.Z * Math.Sin(-(az * Math.PI) / 180);
+                zeroY = OriginCoord.Y * (1 - Math.Cos(-(az * Math.PI) / 180)) + OriginCoord.Z * Math.Sin(-(az * Math.PI) / 180);
+                zeroZ = 0;
+            }
+        }
+
         private void MoveFigure(Figure figure, int dx, int dy, int dz)
         {
             for (int i = 0; i < figure.coordBottom.Count(); i++)

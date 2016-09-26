@@ -59,12 +59,17 @@
             this.numericUpDownDy = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownDx = new System.Windows.Forms.NumericUpDown();
             this.tabPageScale = new System.Windows.Forms.TabPage();
-            this.textBoxCoeffScaleX = new System.Windows.Forms.TextBox();
-            this.textBoxCoeffScaleY = new System.Windows.Forms.TextBox();
-            this.textBoxCoeffScaleZ = new System.Windows.Forms.TextBox();
-            this.buttonScaleOX = new System.Windows.Forms.Button();
-            this.buttonScaleOy = new System.Windows.Forms.Button();
             this.buttonScaleZ = new System.Windows.Forms.Button();
+            this.buttonScaleOy = new System.Windows.Forms.Button();
+            this.buttonScaleOX = new System.Windows.Forms.Button();
+            this.textBoxCoeffScaleZ = new System.Windows.Forms.TextBox();
+            this.textBoxCoeffScaleY = new System.Windows.Forms.TextBox();
+            this.textBoxCoeffScaleX = new System.Windows.Forms.TextBox();
+            this.tabPageRotate = new System.Windows.Forms.TabPage();
+            this.numericUpDownRotate = new System.Windows.Forms.NumericUpDown();
+            this.buttonRotateX = new System.Windows.Forms.Button();
+            this.buttonRotateY = new System.Windows.Forms.Button();
+            this.buttonRotateZ = new System.Windows.Forms.Button();
             this.groupBoxDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSchema)).BeginInit();
             this.groupBoxActions.SuspendLayout();
@@ -74,6 +79,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDx)).BeginInit();
             this.tabPageScale.SuspendLayout();
+            this.tabPageRotate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRotate)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxDescription
@@ -278,6 +285,7 @@
             // 
             this.tabControlActions.Controls.Add(this.tabPageMoove);
             this.tabControlActions.Controls.Add(this.tabPageScale);
+            this.tabControlActions.Controls.Add(this.tabPageRotate);
             this.tabControlActions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlActions.Location = new System.Drawing.Point(3, 16);
             this.tabControlActions.Name = "tabControlActions";
@@ -387,29 +395,23 @@
             this.tabPageScale.Text = "Масштабирование";
             this.tabPageScale.UseVisualStyleBackColor = true;
             // 
-            // textBoxCoeffScaleX
+            // buttonScaleZ
             // 
-            this.textBoxCoeffScaleX.Location = new System.Drawing.Point(7, 14);
-            this.textBoxCoeffScaleX.Name = "textBoxCoeffScaleX";
-            this.textBoxCoeffScaleX.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCoeffScaleX.TabIndex = 0;
-            this.textBoxCoeffScaleX.Text = "1.5";
+            this.buttonScaleZ.Location = new System.Drawing.Point(114, 64);
+            this.buttonScaleZ.Name = "buttonScaleZ";
+            this.buttonScaleZ.Size = new System.Drawing.Size(75, 23);
+            this.buttonScaleZ.TabIndex = 5;
+            this.buttonScaleZ.Text = "Ось Z";
+            this.buttonScaleZ.UseVisualStyleBackColor = true;
             // 
-            // textBoxCoeffScaleY
+            // buttonScaleOy
             // 
-            this.textBoxCoeffScaleY.Location = new System.Drawing.Point(7, 38);
-            this.textBoxCoeffScaleY.Name = "textBoxCoeffScaleY";
-            this.textBoxCoeffScaleY.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCoeffScaleY.TabIndex = 1;
-            this.textBoxCoeffScaleY.Text = "1";
-            // 
-            // textBoxCoeffScaleZ
-            // 
-            this.textBoxCoeffScaleZ.Location = new System.Drawing.Point(7, 64);
-            this.textBoxCoeffScaleZ.Name = "textBoxCoeffScaleZ";
-            this.textBoxCoeffScaleZ.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCoeffScaleZ.TabIndex = 2;
-            this.textBoxCoeffScaleZ.Text = "1";
+            this.buttonScaleOy.Location = new System.Drawing.Point(114, 38);
+            this.buttonScaleOy.Name = "buttonScaleOy";
+            this.buttonScaleOy.Size = new System.Drawing.Size(75, 23);
+            this.buttonScaleOy.TabIndex = 4;
+            this.buttonScaleOy.Text = "Ось Y";
+            this.buttonScaleOy.UseVisualStyleBackColor = true;
             // 
             // buttonScaleOX
             // 
@@ -421,23 +423,80 @@
             this.buttonScaleOX.UseVisualStyleBackColor = true;
             this.buttonScaleOX.Click += new System.EventHandler(this.buttonScaleOX_Click);
             // 
-            // buttonScaleOy
+            // textBoxCoeffScaleZ
             // 
-            this.buttonScaleOy.Location = new System.Drawing.Point(114, 38);
-            this.buttonScaleOy.Name = "buttonScaleOy";
-            this.buttonScaleOy.Size = new System.Drawing.Size(75, 23);
-            this.buttonScaleOy.TabIndex = 4;
-            this.buttonScaleOy.Text = "Ось Y";
-            this.buttonScaleOy.UseVisualStyleBackColor = true;
+            this.textBoxCoeffScaleZ.Location = new System.Drawing.Point(7, 64);
+            this.textBoxCoeffScaleZ.Name = "textBoxCoeffScaleZ";
+            this.textBoxCoeffScaleZ.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCoeffScaleZ.TabIndex = 2;
+            this.textBoxCoeffScaleZ.Text = "1";
             // 
-            // buttonScaleZ
+            // textBoxCoeffScaleY
             // 
-            this.buttonScaleZ.Location = new System.Drawing.Point(114, 64);
-            this.buttonScaleZ.Name = "buttonScaleZ";
-            this.buttonScaleZ.Size = new System.Drawing.Size(75, 23);
-            this.buttonScaleZ.TabIndex = 5;
-            this.buttonScaleZ.Text = "Ось Z";
-            this.buttonScaleZ.UseVisualStyleBackColor = true;
+            this.textBoxCoeffScaleY.Location = new System.Drawing.Point(7, 38);
+            this.textBoxCoeffScaleY.Name = "textBoxCoeffScaleY";
+            this.textBoxCoeffScaleY.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCoeffScaleY.TabIndex = 1;
+            this.textBoxCoeffScaleY.Text = "1";
+            // 
+            // textBoxCoeffScaleX
+            // 
+            this.textBoxCoeffScaleX.Location = new System.Drawing.Point(7, 14);
+            this.textBoxCoeffScaleX.Name = "textBoxCoeffScaleX";
+            this.textBoxCoeffScaleX.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCoeffScaleX.TabIndex = 0;
+            this.textBoxCoeffScaleX.Text = "1.5";
+            // 
+            // tabPageRotate
+            // 
+            this.tabPageRotate.Controls.Add(this.buttonRotateZ);
+            this.tabPageRotate.Controls.Add(this.buttonRotateY);
+            this.tabPageRotate.Controls.Add(this.buttonRotateX);
+            this.tabPageRotate.Controls.Add(this.numericUpDownRotate);
+            this.tabPageRotate.Location = new System.Drawing.Point(4, 22);
+            this.tabPageRotate.Name = "tabPageRotate";
+            this.tabPageRotate.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageRotate.Size = new System.Drawing.Size(745, 155);
+            this.tabPageRotate.TabIndex = 2;
+            this.tabPageRotate.Text = "Поворот";
+            this.tabPageRotate.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDownRotate
+            // 
+            this.numericUpDownRotate.Location = new System.Drawing.Point(6, 6);
+            this.numericUpDownRotate.Name = "numericUpDownRotate";
+            this.numericUpDownRotate.Size = new System.Drawing.Size(39, 20);
+            this.numericUpDownRotate.TabIndex = 0;
+            // 
+            // buttonRotateX
+            // 
+            this.buttonRotateX.Location = new System.Drawing.Point(6, 33);
+            this.buttonRotateX.Name = "buttonRotateX";
+            this.buttonRotateX.Size = new System.Drawing.Size(75, 23);
+            this.buttonRotateX.TabIndex = 1;
+            this.buttonRotateX.Text = "X";
+            this.buttonRotateX.UseVisualStyleBackColor = true;
+            this.buttonRotateX.Click += new System.EventHandler(this.buttonRotateX_Click);
+            // 
+            // buttonRotateY
+            // 
+            this.buttonRotateY.Location = new System.Drawing.Point(6, 62);
+            this.buttonRotateY.Name = "buttonRotateY";
+            this.buttonRotateY.Size = new System.Drawing.Size(75, 23);
+            this.buttonRotateY.TabIndex = 2;
+            this.buttonRotateY.Text = "Y";
+            this.buttonRotateY.UseVisualStyleBackColor = true;
+            this.buttonRotateY.Click += new System.EventHandler(this.buttonRotateY_Click);
+            // 
+            // buttonRotateZ
+            // 
+            this.buttonRotateZ.Location = new System.Drawing.Point(6, 89);
+            this.buttonRotateZ.Name = "buttonRotateZ";
+            this.buttonRotateZ.Size = new System.Drawing.Size(75, 23);
+            this.buttonRotateZ.TabIndex = 3;
+            this.buttonRotateZ.Text = "Z";
+            this.buttonRotateZ.UseVisualStyleBackColor = true;
+            this.buttonRotateZ.Click += new System.EventHandler(this.buttonRotateZ_Click);
             // 
             // FormMain
             // 
@@ -463,6 +522,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDx)).EndInit();
             this.tabPageScale.ResumeLayout(false);
             this.tabPageScale.PerformLayout();
+            this.tabPageRotate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRotate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -506,6 +567,11 @@
         private System.Windows.Forms.TextBox textBoxCoeffScaleZ;
         private System.Windows.Forms.TextBox textBoxCoeffScaleY;
         private System.Windows.Forms.TextBox textBoxCoeffScaleX;
+        private System.Windows.Forms.TabPage tabPageRotate;
+        private System.Windows.Forms.Button buttonRotateZ;
+        private System.Windows.Forms.Button buttonRotateY;
+        private System.Windows.Forms.Button buttonRotateX;
+        private System.Windows.Forms.NumericUpDown numericUpDownRotate;
     }
 }
 
