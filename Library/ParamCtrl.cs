@@ -185,8 +185,8 @@ namespace Library
             }
             if (az != 0)
             {
-                zeroX = OriginCoord.X * (1 - Math.Cos(-(az * Math.PI) / 180)) + OriginCoord.Z * Math.Sin(-(az * Math.PI) / 180);
-                zeroY = OriginCoord.Y * (1 - Math.Cos(-(az * Math.PI) / 180)) + OriginCoord.Z * Math.Sin(-(az * Math.PI) / 180);
+                zeroX = OriginCoord.X * (1 - Math.Cos(-(az * Math.PI) / 180)) + OriginCoord.Y * Math.Sin(-(az * Math.PI) / 180);
+                zeroY = OriginCoord.Y * (1 - Math.Cos(-(az * Math.PI) / 180)) - OriginCoord.X * Math.Sin(-(az * Math.PI) / 180);
                 zeroZ = 0;
             }
         }
