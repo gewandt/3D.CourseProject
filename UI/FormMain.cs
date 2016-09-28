@@ -56,6 +56,12 @@ namespace UI
             _formDraw.RedrawArea(isFirst);
         }
 
+        private void RedrawAreaWithChangeCoords(bool isProf, bool isGoriz)
+        {
+            _formDraw.Refresh();
+            _formDraw.RedrawAreaWithChangeCoords(isProf, isGoriz);
+        }
+
         private void buttonInc_Click(object sender, EventArgs e)
         {
             _ctrl.MoveFigures((int)numericUpDownDx.Value, (int)numericUpDownDy.Value, (int)numericUpDownDz.Value);
@@ -90,6 +96,21 @@ namespace UI
         {
             _ctrl.RotateFigures(0, 0, float.Parse(numericUpDownRotate.Value.ToString()));
             RedrawAreaWithRefreshing(false);
+        }
+
+        private void buttonFrontProection_Click(object sender, EventArgs e)
+        {
+            RedrawAreaWithRefreshing(false);
+        }
+
+        private void buttonGorisProection_Click(object sender, EventArgs e)
+        {
+            RedrawAreaWithChangeCoords(false, true);
+        }
+
+        private void buttonProfProection_Click(object sender, EventArgs e)
+        {
+            RedrawAreaWithChangeCoords(true, false);
         }
     }
 }

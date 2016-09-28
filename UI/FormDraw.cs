@@ -27,8 +27,16 @@ namespace UI
             if (isFirst)
                 _ctrl.OverrideOriginCoordinates(pictureBoxMain);
             _ctrl.DrawCoordSystem(gr);
-            _ctrl.DrawFigures(gr);
-            _ctrl.DrawRibs(gr);
+            _ctrl.DrawFigures(gr, null);
+            _ctrl.DrawRibs(gr, null, null);
+        }
+
+        public void RedrawAreaWithChangeCoords(bool isProf, bool isGoriz)
+        {
+            InitialGraphics();
+            _ctrl.DrawCoordSystem(gr);
+            _ctrl.DrawFigures(gr, _ctrl.GetMethodForDrawPoints(isProf, isGoriz));
+            _ctrl.DrawRibs(gr, _ctrl.GetMethodForDrawRibs(isProf, isGoriz), _ctrl.GetMethodForDrawRibsFromTopToBottom(isProf, isGoriz));
         }
 
         private void InitialGraphics()

@@ -45,7 +45,7 @@ namespace Library
         {
             var height = pb.Height;
             var width = pb.Width;
-            OriginCoord = new Entity.Point3D(width / 2, height / 2, 0);
+            OriginCoord = new Entity.Point3D(width / 2, height / 2, height / 2);
             prism?.CalculateCoords(OriginCoord);
             cylinder?.CalculateCoords(OriginCoord, prism.Height);
         }
@@ -106,32 +106,59 @@ namespace Library
         /// Draw figures on graphic
         /// </summary>
         /// <param name="g">Graphics to paint</param>
-        public void DrawFigures(Graphics g)
+        public void DrawFigures(Graphics g, Action<Graphics, Pen, Point3D[]> drawPoints)
         {
+            if (drawPoints == null)
+                drawPoints = DrawPointsByCoordsXY;
             Pen pen = new Pen(Color.Green, 5);
-            DrawPointsByCoords(g, pen, prism.coordBottom);
-            DrawPointsByCoords(g, pen, prism.coordTop);
+            drawPoints(g, pen, prism.coordBottom);
+            drawPoints(g, pen, prism.coordTop);
             pen = new Pen(Color.Red, 5);
-            DrawPointsByCoords(g, pen, cylinder.coordBottom);
-            DrawPointsByCoords(g, pen, cylinder.coordTop);
+            drawPoints(g, pen, cylinder.coordBottom);
+            drawPoints(g, pen, cylinder.coordTop);
         }
 
         /// <summary>
         /// Draw ribs for figures
         /// </summary>
         /// <param name="g">Graphics to paint</param>
-        public void DrawRibs(Graphics g)
+        public void DrawRibs(Graphics g, Action<Graphics, Pen, Point3D[]> drawRibs, Action<Graphics, Pen, Point3D[], Point3D[]> drawRibsFromTopToBottom)
         {
+            if (drawRibs == null)
+                drawRibs = DrawRibsAtBaseXY;
+            if (drawRibsFromTopToBottom == null)
+                drawRibsFromTopToBottom = DrawRibsFromTopToBottomXY;
             Pen pen = new Pen(Color.Green, 1);
-            DrawRibsAtBase(g, pen, prism.coordTop);
-            DrawRibsAtBase(g, pen, prism.coordBottom);
+            drawRibs(g, pen, prism.coordTop);
+            drawRibs(g, pen, prism.coordBottom);
             pen.Color = Color.Red;
-            DrawRibsAtBase(g, pen, cylinder.coordTop);
-            DrawRibsAtBase(g, pen, cylinder.coordBottom);
+            drawRibs(g, pen, cylinder.coordTop);
+            drawRibs(g, pen, cylinder.coordBottom);
 
-            DrawRibsFromTopToBottom(g, pen, cylinder.coordTop, cylinder.coordBottom);
+            drawRibsFromTopToBottom(g, pen, cylinder.coordTop, cylinder.coordBottom);
             pen.Color = Color.Green;
-            DrawRibsFromTopToBottom(g, pen, prism.coordTop, prism.coordBottom);
+            drawRibsFromTopToBottom(g, pen, prism.coordTop, prism.coordBottom);
+        }
+
+        public Action<Graphics, Pen, Point3D[]> GetMethodForDrawPoints(bool isProf, bool isGoriz)
+        {
+            if (isProf)
+                return DrawPointsByCoordsYZ;
+            return DrawPointsByCoordsXZ;
+        }
+
+        public Action<Graphics, Pen, Point3D[]> GetMethodForDrawRibs(bool isProf, bool isGoriz)
+        {
+            if (isProf)
+                return DrawRibsAtBaseYZ;
+            return DrawRibsAtBaseXZ;
+        }
+
+        public Action<Graphics, Pen, Point3D[], Point3D[]> GetMethodForDrawRibsFromTopToBottom(bool isProf, bool isGoriz)
+        {
+            if (isProf)
+                return DrawRibsFromTopToBottomYZ;
+            return DrawRibsFromTopToBottomXZ;
         }
 
         public void MoveFigures(int dx, int dy, int dz)
@@ -212,7 +239,7 @@ namespace Library
             }
         }
 
-        private void DrawRibsAtBase(Graphics g, Pen pen, Point3D[] array)
+        private void DrawRibsAtBaseXY(Graphics g, Pen pen, Point3D[] array)
         {
             var count = array.Count() - 1;
             g.DrawLine(pen, array[0].X, array[0].Y, array[count].X, array[count].Y);
@@ -222,7 +249,7 @@ namespace Library
             }
         }
 
-        private void DrawRibsFromTopToBottom(Graphics g, Pen pen, Point3D[] source, Point3D[] target)
+        private void DrawRibsFromTopToBottomXY(Graphics g, Pen pen, Point3D[] source, Point3D[] target)
         {
             for (int i = 0; i < source.Count(); i++)
             {
@@ -230,11 +257,63 @@ namespace Library
             }
         }
 
-        private void DrawPointsByCoords(Graphics g, Pen pen, Point3D[] array)
+        private void DrawPointsByCoordsXY(Graphics g, Pen pen, Point3D[] array)
         {
             foreach (var item in array)
             {
                 g.DrawEllipse(pen, item.X, item.Y, 2, 2);
+            }
+        }
+
+        private void DrawRibsAtBaseXZ(Graphics g, Pen pen, Point3D[] array)
+        {
+            var count = array.Count() - 1;
+            g.DrawLine(pen, array[0].X, array[0].Z, array[count].X, array[count].Z);
+            for (int i = 0; i < count; i++)
+            {
+                g.DrawLine(pen, array[i].X, array[i].Z, array[i + 1].X, array[i + 1].Z);
+            }
+        }
+
+        private void DrawRibsFromTopToBottomXZ(Graphics g, Pen pen, Point3D[] source, Point3D[] target)
+        {
+            for (int i = 0; i < source.Count(); i++)
+            {
+                g.DrawLine(pen, source[i].X, source[i].Z, target[i].X, target[i].Z);
+            }
+        }
+
+        private void DrawPointsByCoordsXZ(Graphics g, Pen pen, Point3D[] array)
+        {
+            foreach (var item in array)
+            {
+                g.DrawEllipse(pen, item.X, item.Z, 2, 2);
+            }
+        }
+
+        private void DrawRibsAtBaseYZ(Graphics g, Pen pen, Point3D[] array)
+        {
+            var count = array.Count() - 1;
+            g.DrawLine(pen, array[0].Y, array[0].Z, array[count].Y, array[count].Z);
+            for (int i = 0; i < count; i++)
+            {
+                g.DrawLine(pen, array[i].Y, array[i].Z, array[i + 1].Y, array[i + 1].Z);
+            }
+        }
+
+        private void DrawRibsFromTopToBottomYZ(Graphics g, Pen pen, Point3D[] source, Point3D[] target)
+        {
+            for (int i = 0; i < source.Count(); i++)
+            {
+                g.DrawLine(pen, source[i].Y, source[i].Z, target[i].Y, target[i].Z);
+            }
+        }
+
+        private void DrawPointsByCoordsYZ(Graphics g, Pen pen, Point3D[] array)
+        {
+            foreach (var item in array)
+            {
+                g.DrawEllipse(pen, item.Y, item.Z, 2, 2);
             }
         }
     }
